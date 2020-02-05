@@ -1,0 +1,25 @@
+For IE
+Declare Iframe and use that to save excel file.
+
+<iframe id="IEExportFrame" style="display:none"></iframe>
+
+function IsBrowserIE() {
+            var msie = !!navigator.userAgent.match(/Trident/g) || !!navigator.userAgent.match(/MSIE/g);
+            if (msie > 0) {  // If Internet Explorer, return true
+                return true;
+            }
+            else {  // If another browser, return false
+                return false;
+            }
+           }
+             
+function ImportInExcelForIE(tableIndex){
+				var indexVal = parseInt(tableIndex); 
+                var fileName = "table"+ tableIndex +".xls";//
+			    IEExportFrame.document.open("txt/html", "replace");
+				IEExportFrame.document.write(tableData[indexVal]);
+				IEExportFrame.document.close();
+				IEExportFrame.focus();
+				IEExportFrame.document.execCommand("SaveAs", true, fileName); 
+				return false;
+            }
